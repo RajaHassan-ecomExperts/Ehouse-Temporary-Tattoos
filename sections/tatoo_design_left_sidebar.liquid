@@ -1,0 +1,62 @@
+<div class="sidebar_Content_row {% if customer %}login_success{% endif %}">
+  {%- for block in section.blocks -%}
+    <div class="sidebar">
+      <div class="side-loop" id="{{ block.settings.id }}">
+
+        {{ block.settings.svg }}
+        {{ block.settings.title }}
+     
+      </div>
+    </div>
+  {%- endfor -%}
+  <div class="desk_hide">
+    <span class="bar_hide">X</span>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Tatoo Design Left Sidebar",
+  "class": "popup_main",
+  "settings": [
+
+
+  ],
+   "blocks": [
+  {
+    "type": "leftsidebar",
+    "name": "leftsidebar",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "svg",
+        "label": "Svg"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "id",
+        "label": "Id",
+        "info": "Please do not remove the id"
+      }
+
+    ]
+  }
+],
+   "presets": [
+    {
+      "name": "Tatoo Design Left Sidebar"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

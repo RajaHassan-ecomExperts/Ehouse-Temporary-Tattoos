@@ -1,0 +1,107 @@
+<style>
+   ul {
+  	 list-style-type: none;
+  	 padding: 0;
+  }
+   .tattoo-custom-drawer {
+  	 position: absolute;
+  	 left: -300px;
+  	 width: 300px;
+  	 top: 0px;
+  	 height: 100%;
+  	 background-color: #2f2f2f;
+  	 /* overflow-y: scroll;
+  	 overflow-x: hidden; */
+  	 color: white;
+  }
+
+   .tattoo-custom-drawer, .wrapper {
+  	 transition: all 0.3s ease-out;
+  }
+   .open-drawer, .open-wrapper {
+  	 transition: all 0.3s ease-out;
+  }
+   .open-drawer {
+  	 left: 0px;
+     top: 0px;
+  }
+   .open-wrapper {
+  	 width: calc(100% - 300px);
+  	 margin-left: 300px;
+  	 position: fixed;
+     display: block!important; 
+  	 opacity: 0.3;
+  }
+   .open-wrapper .hamburger {
+  	 background-color: black;
+  }
+div#shopify-section-custom-hamburger.active {
+    z-index: 5;
+    position: absolute;
+    width: 300px;
+    max-width: 100%;
+    height: 100vh;
+    top: 68px;
+}
+.tattoo-custom-drawer ul {
+    padding: 30px 20px;
+    margin: 0;
+}
+  .hamburger {
+    width: max-content;
+    cursor: pointer;
+}
+.tattoo-custom-drawer ul li{
+    padding: 8px 10px;
+}
+.tattoo-custom-drawer ul li:hover{
+    background: #ddd;
+}
+.tattoo-custom-drawer ul a {
+    color: #fff;
+    text-decoration: none;
+   
+}  
+.tattoo-custom-drawer ul li:hover a {
+    color: #000;
+}
+@media only screen and (max-width:749px){
+
+  div#shopify-section-custom-hamburger.active {
+    z-index: 3;
+}
+div#shopify-section-custom-hamburger.active {
+    top: 64px;
+}  
+}
+</style>
+
+<div class="tattoo-custom-drawer">
+  <ul>
+    {% for link in section.settings.menu.links %}
+      <li>
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="wrapper"></div>
+
+{% schema %}
+{
+  "name": "Custom Hamburger",
+  "settings": [
+     {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

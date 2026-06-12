@@ -1,0 +1,23 @@
+{% assign tatto_fonts = "" %}
+{% for link in linklists[settings.tatto_fonts].links %}
+  
+    {% if link.title == "Times New Roman" %}
+    {% continue %}
+    {% endif %}
+    {% assign font_title = link.title | replace: " ", "+" %}
+    {% if font_title == 'Playwrite+USA+Traditional' %}
+        {% assign tatto_fonts = tatto_fonts | append: 'Playwrite+US+Trad' %}
+    {% elsif font_title == 'Playwrite+USA+Modern' %}
+        {% assign tatto_fonts = tatto_fonts | append: 'Playwrite+US+Modern' %}
+    {% else %}
+        {% assign tatto_fonts = tatto_fonts | append: font_title %}
+    {% endif %}
+    {% if forloop.last == false %}
+        {% assign tatto_fonts = tatto_fonts | append: "|" %}
+    {% endif %}
+{% endfor %}
+{% if tatto_fonts != "" %}
+    <style>
+        @import url('https://fonts.googleapis.com/css?family={{ tatto_fonts | escape }}');
+    </style>
+{% endif %}

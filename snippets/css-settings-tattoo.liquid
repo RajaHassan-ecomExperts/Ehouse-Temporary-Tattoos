@@ -1,0 +1,82 @@
+<style>
+{%- if settings.left_sidebar_bgcolor != "rgba(0,0,0,0)" -%}
+     div#shopify-section-tatoo_design_left_sidebar{
+           background: {{settings.left_sidebar_bgcolor}};
+     }
+{%- endif -%}
+
+{%- if settings.left_sidebar_activebg != "rgba(0,0,0,0)" -%}
+      .card, .side-loop.active {
+           background: {{settings.left_sidebar_activebg}};
+     }
+   .left_dwroor .center_close_btn svg {
+     fill: {{settings.left_sidebar_activebg}};
+  }
+{%- endif -%}
+ 
+  {%- if settings.left_sidebar_txtcolor != "rgba(0,0,0,0)" -%}
+    .side-loop, .side-loop.active, ul#tabs-nav a, .btn-up, .open_content .content_part p, .open_content h3 , .open_content p, .content_part strong{
+       color: {{settings.left_sidebar_txtcolor}};
+     }
+    .btn-up svg>path {
+      stroke: {{settings.left_sidebar_txtcolor}};
+    }
+    .side-loop svg>path, .side-loop.active svg>path{
+       fill: {{settings.left_sidebar_txtcolor}};
+    }
+    ul#tabs-nav li.slick-slide.active, ul#tabs-nav li {
+    border-color: {{settings.left_sidebar_txtcolor}};
+    }
+{%- endif -%}
+
+  {%- if settings.upload_placeholder != "rgba(0,0,0,0)" -%}
+    .btn-up {
+       background: {{settings.upload_placeholder}};
+     }
+{%- endif -%}
+
+    .div_custom_front_back .cmn {
+       {%- if settings.canvas_btn_colorbg != "rgba(0,0,0,0)" -%}
+       background: {{settings.canvas_btn_colorbg}};
+         {%- endif -%}
+       {%- if settings.canvas_btn_colorbg_txt != "rgba(0,0,0,0)" -%}
+         color:  {{settings.canvas_btn_colorbg_txt}};
+        {%- endif -%}
+     }
+
+   
+   .div_custom_front_back .cmn.active {
+      {%- if settings.canvas_btn_colorbg_active != "rgba(0,0,0,0)" -%}
+       background: {{settings.canvas_btn_colorbg_active}};
+        {%- endif -%}
+     {%- if settings.canvas_btn_colorbg_txtactive != "rgba(0,0,0,0)" -%}
+         color:  {{settings.canvas_btn_colorbg_txtactive}};
+        {%- endif -%}
+     }
+.tattoo-custom-drawer {
+      {%- if settings.menu_drawer_bg != "rgba(0,0,0,0)" -%}
+       background-color: {{settings.menu_drawer_bg}}!important;
+      {%- endif -%}
+     
+}
+   {%- if settings.menu_drawer_txt != "rgba(0,0,0,0)" -%}
+  .tattoo-custom-drawer ul a{
+     color: {{settings.menu_drawer_txt}}!important;
+  }
+  {%- endif -%}
+  span.preview{
+    {%- if settings.preview_btn_bg != "rgba(0,0,0,0)" -%}
+       background: {{settings.preview_btn_bg}};
+      {%- endif -%}
+      {%- if settings.preview_btn_txt != "rgba(0,0,0,0)" -%}
+       color: {{settings.preview_btn_txt}}!important;
+      {%- endif -%}
+  }
+  #conver_preview svg{
+  {%- if settings.preview_btn_txt != "rgba(0,0,0,0)" -%}
+       stroke: {{settings.preview_btn_txt}}!important;
+      {%- endif -%}
+    
+  }
+</style>
+ 

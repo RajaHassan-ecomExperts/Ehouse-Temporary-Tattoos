@@ -1,0 +1,11 @@
+<div class="draft-api">
+  {% for qtydata in page.metafields.custom.prddata.value %}
+     <div class="loop-all-draft">
+       {% for qt in qtydata.qty_description %}
+         {% if qt.qty != blank and  qt.price != blank %}
+               <div class="loop-all-draft_first" data-id="{{ qtydata.variant_id }}" data-qty="{{ qt.qty  }}" data-price="{{ qt.price }}"></div>
+        {% endif %}
+        {% endfor %}
+     </div>
+{% endfor %}
+</div>

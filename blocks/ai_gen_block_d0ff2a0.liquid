@@ -1,0 +1,803 @@
+{% doc %}
+  @prompt
+    i need a linktree type section where i can add text and links and i want it to look like linktree but also within the style of the theme, and i would like a place at the bottom of all the links where i can add the social media links and it shows the social icons in a row underneath the buttons.  can you allow me to change the background color and to set a background image
+    , can you allow me to upload custom social icons? the pinterest one you generated is messed up
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-linktree-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    background-color: {{ block.settings.background_color }};
+    {% if block.settings.background_image %}
+      background-image: url('{{ block.settings.background_image | image_url: width: 2000 }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {% endif %}
+  }
+
+  .ai-linktree-container-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: {{ block.settings.max_width }}px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .ai-linktree-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .ai-linktree-avatar-{{ ai_gen_id }} {
+    width: {{ block.settings.avatar_size }}px;
+    height: {{ block.settings.avatar_size }}px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    border: {{ block.settings.avatar_border_width }}px solid {{ block.settings.avatar_border_color }};
+  }
+
+  .ai-linktree-avatar-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-linktree-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 10px;
+    font-weight: 600;
+  }
+
+  .ai-linktree-bio-{{ ai_gen_id }} {
+    font-size: {{ block.settings.bio_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .ai-linktree-links-{{ ai_gen_id }} {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.link_spacing }}px;
+  }
+
+  .ai-linktree-link-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: {{ block.settings.link_padding }}px 30px;
+    background-color: {{ block.settings.link_bg_color }};
+    color: {{ block.settings.link_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.link_border_radius }}px;
+    border: {{ block.settings.link_border_width }}px solid {{ block.settings.link_border_color }};
+    font-size: {{ block.settings.link_text_size }}px;
+    font-weight: {{ block.settings.link_font_weight }};
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .ai-linktree-link-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.link_hover_bg_color }};
+    color: {{ block.settings.link_hover_text_color }};
+    border-color: {{ block.settings.link_hover_border_color }};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .ai-linktree-socials-{{ ai_gen_id }} {
+    margin-top: 20px;
+    display: flex;
+    gap: {{ block.settings.social_spacing }}px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .ai-linktree-social-link-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: {{ block.settings.social_icon_size }}px;
+    height: {{ block.settings.social_icon_size }}px;
+    background-color: {{ block.settings.social_bg_color }};
+    border-radius: 50%;
+    color: {{ block.settings.social_icon_color }};
+    text-decoration: none;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .ai-linktree-social-link-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.social_hover_bg_color }};
+    color: {{ block.settings.social_hover_icon_color }};
+    transform: scale(1.1);
+  }
+
+  .ai-linktree-social-link-{{ ai_gen_id }} svg {
+    width: calc({{ block.settings.social_icon_size }}px * 0.5);
+    height: calc({{ block.settings.social_icon_size }}px * 0.5);
+  }
+
+  .ai-linktree-social-link-{{ ai_gen_id }} img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-linktree-{{ ai_gen_id }} {
+      padding: 40px 16px;
+    }
+
+    .ai-linktree-title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.title_size }}px * 0.85);
+    }
+
+    .ai-linktree-bio-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.bio_size }}px * 0.9);
+    }
+  }
+{% endstyle %}
+
+<div class="ai-linktree-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-linktree-container-{{ ai_gen_id }}">
+    <div class="ai-linktree-header-{{ ai_gen_id }}">
+      {% if block.settings.avatar_image %}
+        <div class="ai-linktree-avatar-{{ ai_gen_id }}">
+          <img
+            src="{{ block.settings.avatar_image | image_url: width: 400 }}"
+            alt="{{ block.settings.title | escape }}"
+            loading="lazy"
+            width="400"
+            height="400"
+          >
+        </div>
+      {% endif %}
+
+      {% if block.settings.title != blank %}
+        <h1 class="ai-linktree-title-{{ ai_gen_id }}">{{ block.settings.title }}</h1>
+      {% endif %}
+
+      {% if block.settings.bio != blank %}
+        <p class="ai-linktree-bio-{{ ai_gen_id }}">{{ block.settings.bio }}</p>
+      {% endif %}
+    </div>
+
+    <div class="ai-linktree-links-{{ ai_gen_id }}">
+      {% if block.settings.link_1_text != blank and block.settings.link_1_url != blank %}
+        <a href="{{ block.settings.link_1_url }}" class="ai-linktree-link-{{ ai_gen_id }}">
+          {{ block.settings.link_1_text }}
+        </a>
+      {% endif %}
+
+      {% if block.settings.link_2_text != blank and block.settings.link_2_url != blank %}
+        <a href="{{ block.settings.link_2_url }}" class="ai-linktree-link-{{ ai_gen_id }}">
+          {{ block.settings.link_2_text }}
+        </a>
+      {% endif %}
+
+      {% if block.settings.link_3_text != blank and block.settings.link_3_url != blank %}
+        <a href="{{ block.settings.link_3_url }}" class="ai-linktree-link-{{ ai_gen_id }}">
+          {{ block.settings.link_3_text }}
+        </a>
+      {% endif %}
+
+      {% if block.settings.link_4_text != blank and block.settings.link_4_url != blank %}
+        <a href="{{ block.settings.link_4_url }}" class="ai-linktree-link-{{ ai_gen_id }}">
+          {{ block.settings.link_4_text }}
+        </a>
+      {% endif %}
+
+      {% if block.settings.link_5_text != blank and block.settings.link_5_url != blank %}
+        <a href="{{ block.settings.link_5_url }}" class="ai-linktree-link-{{ ai_gen_id }}">
+          {{ block.settings.link_5_text }}
+        </a>
+      {% endif %}
+
+      {% if block.settings.link_6_text != blank and block.settings.link_6_url != blank %}
+        <a href="{{ block.settings.link_6_url }}" class="ai-linktree-link-{{ ai_gen_id }}">
+          {{ block.settings.link_6_text }}
+        </a>
+      {% endif %}
+
+      {% if block.settings.link_7_text != blank and block.settings.link_7_url != blank %}
+        <a href="{{ block.settings.link_7_url }}" class="ai-linktree-link-{{ ai_gen_id }}">
+          {{ block.settings.link_7_text }}
+        </a>
+      {% endif %}
+
+      {% if block.settings.link_8_text != blank and block.settings.link_8_url != blank %}
+        <a href="{{ block.settings.link_8_url }}" class="ai-linktree-link-{{ ai_gen_id }}">
+          {{ block.settings.link_8_text }}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="ai-linktree-socials-{{ ai_gen_id }}">
+      {% if block.settings.instagram_url != blank %}
+        <a href="{{ block.settings.instagram_url }}" class="ai-linktree-social-link-{{ ai_gen_id }}" target="_blank" rel="noopener" aria-label="Instagram">
+          {% if block.settings.instagram_icon %}
+            <img src="{{ block.settings.instagram_icon | image_url: width: 100 }}" alt="Instagram" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          {% endif %}
+        </a>
+      {% endif %}
+
+      {% if block.settings.facebook_url != blank %}
+        <a href="{{ block.settings.facebook_url }}" class="ai-linktree-social-link-{{ ai_gen_id }}" target="_blank" rel="noopener" aria-label="Facebook">
+          {% if block.settings.facebook_icon %}
+            <img src="{{ block.settings.facebook_icon | image_url: width: 100 }}" alt="Facebook" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          {% endif %}
+        </a>
+      {% endif %}
+
+      {% if block.settings.twitter_url != blank %}
+        <a href="{{ block.settings.twitter_url }}" class="ai-linktree-social-link-{{ ai_gen_id }}" target="_blank" rel="noopener" aria-label="Twitter">
+          {% if block.settings.twitter_icon %}
+            <img src="{{ block.settings.twitter_icon | image_url: width: 100 }}" alt="Twitter" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+            </svg>
+          {% endif %}
+        </a>
+      {% endif %}
+
+      {% if block.settings.tiktok_url != blank %}
+        <a href="{{ block.settings.tiktok_url }}" class="ai-linktree-social-link-{{ ai_gen_id }}" target="_blank" rel="noopener" aria-label="TikTok">
+          {% if block.settings.tiktok_icon %}
+            <img src="{{ block.settings.tiktok_icon | image_url: width: 100 }}" alt="TikTok" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+            </svg>
+          {% endif %}
+        </a>
+      {% endif %}
+
+      {% if block.settings.youtube_url != blank %}
+        <a href="{{ block.settings.youtube_url }}" class="ai-linktree-social-link-{{ ai_gen_id }}" target="_blank" rel="noopener" aria-label="YouTube">
+          {% if block.settings.youtube_icon %}
+            <img src="{{ block.settings.youtube_icon | image_url: width: 100 }}" alt="YouTube" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+            </svg>
+          {% endif %}
+        </a>
+      {% endif %}
+
+      {% if block.settings.linkedin_url != blank %}
+        <a href="{{ block.settings.linkedin_url }}" class="ai-linktree-social-link-{{ ai_gen_id }}" target="_blank" rel="noopener" aria-label="LinkedIn">
+          {% if block.settings.linkedin_icon %}
+            <img src="{{ block.settings.linkedin_icon | image_url: width: 100 }}" alt="LinkedIn" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          {% endif %}
+        </a>
+      {% endif %}
+
+      {% if block.settings.pinterest_url != blank %}
+        <a href="{{ block.settings.pinterest_url }}" class="ai-linktree-social-link-{{ ai_gen_id }}" target="_blank" rel="noopener" aria-label="Pinterest">
+          {% if block.settings.pinterest_icon %}
+            <img src="{{ block.settings.pinterest_icon | image_url: width: 100 }}" alt="Pinterest" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/>
+            </svg>
+          {% endif %}
+        </a>
+      {% endif %}
+
+      {% if block.settings.email_url != blank %}
+        <a href="mailto:{{ block.settings.email_url }}" class="ai-linktree-social-link-{{ ai_gen_id }}" aria-label="Email">
+          {% if block.settings.email_icon %}
+            <img src="{{ block.settings.email_icon | image_url: width: 100 }}" alt="Email" loading="lazy">
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          {% endif %}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Linktree",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "header",
+      "content": "Profile"
+    },
+    {
+      "type": "image_picker",
+      "id": "avatar_image",
+      "label": "Avatar image"
+    },
+    {
+      "type": "range",
+      "id": "avatar_size",
+      "label": "Avatar size",
+      "min": 60,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "avatar_border_width",
+      "label": "Avatar border width",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "default": 3
+    },
+    {
+      "type": "color",
+      "id": "avatar_border_color",
+      "label": "Avatar border color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "@yourhandle"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 18,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "textarea",
+      "id": "bio",
+      "label": "Bio",
+      "default": "Welcome to my page! Check out my links below."
+    },
+    {
+      "type": "range",
+      "id": "bio_size",
+      "label": "Bio size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum width",
+      "min": 400,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "header",
+      "content": "Link 1"
+    },
+    {
+      "type": "text",
+      "id": "link_1_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link_1_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Link 2"
+    },
+    {
+      "type": "text",
+      "id": "link_2_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link_2_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Link 3"
+    },
+    {
+      "type": "text",
+      "id": "link_3_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link_3_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Link 4"
+    },
+    {
+      "type": "text",
+      "id": "link_4_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link_4_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Link 5"
+    },
+    {
+      "type": "text",
+      "id": "link_5_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link_5_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Link 6"
+    },
+    {
+      "type": "text",
+      "id": "link_6_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link_6_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Link 7"
+    },
+    {
+      "type": "text",
+      "id": "link_7_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link_7_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Link 8"
+    },
+    {
+      "type": "text",
+      "id": "link_8_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "link_8_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Link style"
+    },
+    {
+      "type": "range",
+      "id": "link_spacing",
+      "label": "Spacing between links",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "link_padding",
+      "label": "Link padding",
+      "min": 12,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "link_border_radius",
+      "label": "Link border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "link_border_width",
+      "label": "Link border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "link_text_size",
+      "label": "Link text size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "link_font_weight",
+      "label": "Link font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "color",
+      "id": "link_bg_color",
+      "label": "Link background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "link_text_color",
+      "label": "Link text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "link_border_color",
+      "label": "Link border",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_bg_color",
+      "label": "Link hover background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_text_color",
+      "label": "Link hover text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_border_color",
+      "label": "Link hover border",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Social media"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "instagram_icon",
+      "label": "Instagram custom icon"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "facebook_icon",
+      "label": "Facebook custom icon"
+    },
+    {
+      "type": "url",
+      "id": "twitter_url",
+      "label": "Twitter URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "twitter_icon",
+      "label": "Twitter custom icon"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "tiktok_icon",
+      "label": "TikTok custom icon"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "youtube_icon",
+      "label": "YouTube custom icon"
+    },
+    {
+      "type": "url",
+      "id": "linkedin_url",
+      "label": "LinkedIn URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "linkedin_icon",
+      "label": "LinkedIn custom icon"
+    },
+    {
+      "type": "url",
+      "id": "pinterest_url",
+      "label": "Pinterest URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "pinterest_icon",
+      "label": "Pinterest custom icon"
+    },
+    {
+      "type": "text",
+      "id": "email_url",
+      "label": "Email address"
+    },
+    {
+      "type": "image_picker",
+      "id": "email_icon",
+      "label": "Email custom icon"
+    },
+    {
+      "type": "header",
+      "content": "Social icon style"
+    },
+    {
+      "type": "range",
+      "id": "social_icon_size",
+      "label": "Icon size",
+      "min": 36,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "social_spacing",
+      "label": "Spacing between icons",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "social_bg_color",
+      "label": "Icon background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "social_icon_color",
+      "label": "Icon color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "social_hover_bg_color",
+      "label": "Icon hover background",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "social_hover_icon_color",
+      "label": "Icon hover color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Linktree"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,321 @@
+<style>
+  .tatoo_hamb .hamburger {
+      height: 4.4rem;
+      width: 4.4rem;
+      padding: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  .tatoo_hamb .hamburger svg.icon {
+      display: block;
+      position: absolute;
+      width: auto;
+      height: auto;
+      opacity: 1;
+      transform: scale(1);
+      transition: transform .15s ease,opacity .15s ease;
+
+      fill: none;
+      vertical-align: middle;
+  }
+  .tatoo_hamb .hamburger.open-menu .icon-hamburger {
+      visibility: hidden;
+      opacity: 0;
+      transform: scale(.8);
+  }
+  .tatoo_hamb .hamburger .icon-close {
+      visibility: hidden;
+      opacity: 0;
+      transform: scale(.8);
+  }
+  .tatoo_hamb .hamburger.open-menu .icon-close {
+      display: block;
+      position: absolute;
+      width: auto;
+      height: auto;
+      opacity: 1;
+      transform: scale(1);
+      transition: transform .15s ease,opacity .15s ease;
+      fill: none;
+      vertical-align: middle;
+      visibility: visible;
+  }
+</style>
+<div class="header_tattoo sss">
+  <div class="header_tattoo_inner">
+    <div class="tatoo_hamb">
+      <div class="hamburger">
+        {% render 'tattoo-icon-hamburger' %}
+        {% render 'tattoo-icon-close' %}
+      </div>
+    </div>
+    <div class="logo_tattoo">
+      <a href="{{ shop.url }}"
+        ><img
+          src="{{ section.settings.logo | img_url:'master' }}"
+          height=""
+          width=""
+          loading="lazy"
+          alt="{{ section.settings.logo.alt }}"
+      ></a>
+    </div>
+    <div class="tatoo_nav small-hide">
+      <ul style="display:none;">
+    {% if section.settings.frst_opt != blank %}
+        <li class="file_file h4" id="file_data">
+          {{ section.settings.frst_opt }}
+          <svg
+            fill="#000000"
+            height="13px"
+            width="13px"
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 330 330"
+            xml:space="preserve"
+          >
+            <path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393
+            	c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393
+            	s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"/>
+          </svg>
+        </li>
+      {% endif %}
+        <li class="file_tgy h4">{{ section.settings.frth_opt }}</li>
+        <li class="file_size h4 size">{{ section.settings.scnd_opt }}</li>
+        <li class="file_w_option h4">{{ section.settings.ffth_opt }}</li>
+        <li class="file_qty h4">{{ section.settings.thrd_opt }}</li>
+      </ul>
+
+      <ul class="sub-menu-drop" id="file_data" style="display:none;">
+        <li class="new" id="clearButton">{{ section.settings.frst_sub_opt }}</li>
+        {% if customer %}
+          <li class="saved save_after_login" id="displayButton">{{ section.settings.scnd_sub_opt }}</li>
+        {% else %}
+          <li class="sign-login">{{ section.settings.scnd_sub_opt }}</li>
+        {% endif %}
+        <li class="sign-login   {% if customer %}login-success{% endif%}">{{ section.settings.thrd_sub_opt }}</li>
+      </ul>
+    </div>
+    <div class="header-right" id="convertToPNGButton">
+      <span class="tatto_price small-hide">$0.00</span>
+      {% if section.settings.hide_preview %}
+        <span class="span preview small-hide" id="conver_preview">
+          <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path id="Vector" d="M8.75 3.57955C8.1171 3.57955 7.51012 3.83097 7.06259 4.27849C6.61506 4.72603 6.36364 5.33301 6.36364 5.96591C6.36364 6.59881 6.61506 7.20579 7.06259 7.65332C7.51012 8.10085 8.1171 8.35227 8.75 8.35227C9.3829 8.35227 9.98988 8.10085 10.4374 7.65332C10.8849 7.20579 11.1364 6.59881 11.1364 5.96591C11.1364 5.33301 10.8849 4.72603 10.4374 4.27849C9.98988 3.83097 9.3829 3.57955 8.75 3.57955ZM8.75 9.94318C7.69516 9.94318 6.68353 9.52415 5.93764 8.77827C5.19176 8.03238 4.77273 7.02075 4.77273 5.96591C4.77273 4.91107 5.19176 3.89944 5.93764 3.15355C6.68353 2.40767 7.69516 1.98864 8.75 1.98864C9.80484 1.98864 10.8165 2.40767 11.5624 3.15355C12.3082 3.89944 12.7273 4.91107 12.7273 5.96591C12.7273 7.02075 12.3082 8.03238 11.5624 8.77827C10.8165 9.52415 9.80484 9.94318 8.75 9.94318ZM8.75 0C4.77273 0 1.37614 2.47386 0 5.96591C1.37614 9.45795 4.77273 11.9318 8.75 11.9318C12.7273 11.9318 16.1239 9.45795 17.5 5.96591C16.1239 2.47386 12.7273 0 8.75 0Z" fill="white"/>
+          </svg>
+          {{ section.settings.preview_btn -}}
+        </span>
+      {% endif %}
+      <span class="span add_to_cart small-hide">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path id="Vector" d="M0 0.75C0 0.551088 0.0790175 0.360322 0.21967 0.21967C0.360322 0.0790175 0.551088 0 0.75 0H1.308C2.258 0 2.828 0.639 3.153 1.233C3.37 1.629 3.527 2.088 3.65 2.504C3.68327 2.50137 3.71663 2.50004 3.75 2.5H16.248C17.078 2.5 17.678 3.294 17.45 4.093L15.622 10.502C15.4581 11.0769 15.1114 11.5827 14.6343 11.9428C14.1572 12.303 13.5758 12.4979 12.978 12.498H7.03C6.42749 12.498 5.84165 12.3002 5.36252 11.9349C4.8834 11.5696 4.5375 11.057 4.378 10.476L3.618 7.704L2.358 3.456L2.357 3.448C2.201 2.881 2.055 2.35 1.837 1.954C1.628 1.569 1.46 1.5 1.309 1.5H0.75C0.551088 1.5 0.360322 1.42098 0.21967 1.28033C0.0790175 1.13968 0 0.948912 0 0.75ZM6.5 17.5C7.03043 17.5 7.53914 17.2893 7.91421 16.9142C8.28929 16.5391 8.5 16.0304 8.5 15.5C8.5 14.9696 8.28929 14.4609 7.91421 14.0858C7.53914 13.7107 7.03043 13.5 6.5 13.5C5.96957 13.5 5.46086 13.7107 5.08579 14.0858C4.71071 14.4609 4.5 14.9696 4.5 15.5C4.5 16.0304 4.71071 16.5391 5.08579 16.9142C5.46086 17.2893 5.96957 17.5 6.5 17.5ZM13.5 17.5C14.0304 17.5 14.5391 17.2893 14.9142 16.9142C15.2893 16.5391 15.5 16.0304 15.5 15.5C15.5 14.9696 15.2893 14.4609 14.9142 14.0858C14.5391 13.7107 14.0304 13.5 13.5 13.5C12.9696 13.5 12.4609 13.7107 12.0858 14.0858C11.7107 14.4609 11.5 14.9696 11.5 15.5C11.5 16.0304 11.7107 16.5391 12.0858 16.9142C12.4609 17.2893 12.9696 17.5 13.5 17.5Z" fill="white"/>
+        </svg>
+        {{ section.settings.cart_btn }}
+      </span>
+
+      <span class=" cart_count">
+        <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M2.67545 0.653204C1.88801 1.30735 1.68004 2.41336 1.26506 4.62631L0.55608 8.40752C-0.0271722 11.5195 -0.318325 13.0754 0.531502 14.1001C1.38227 15.1248 2.96471 15.1248 6.13147 15.1248H11.3685C14.5352 15.1248 16.1177 15.1248 16.9684 14.1001C17.8192 13.0754 17.5262 11.5195 16.9438 8.40752L16.2349 4.62631C15.8189 2.4143 15.6119 1.30735 14.8245 0.653204C14.037 0 12.9112 0 10.6595 0H6.84045C4.58874 0 3.46288 0 2.67545 0.653204ZM6.74403 3.54583C6.89062 3.96085 7.16229 4.32021 7.52163 4.57438C7.88097 4.82856 8.31029 4.96505 8.75043 4.96505C9.19058 4.96505 9.6199 4.82856 9.97924 4.57438C10.3386 4.32021 10.6103 3.96085 10.7568 3.54583C10.823 3.37331 10.9538 3.23341 11.1215 3.15592C11.2892 3.07843 11.4806 3.06948 11.6548 3.13096C11.829 3.19244 11.9724 3.31951 12.0543 3.4851C12.1362 3.6507 12.1503 3.84173 12.0935 4.01754C11.8491 4.70887 11.3964 5.30744 10.7976 5.73079C10.1989 6.15415 9.4837 6.38148 8.75043 6.38148C8.01717 6.38148 7.30193 6.15415 6.70322 5.73079C6.10451 5.30744 5.65178 4.70887 5.40737 4.01754C5.37456 3.92936 5.35962 3.83554 5.36343 3.74153C5.36725 3.64753 5.38973 3.55522 5.42957 3.47C5.46942 3.38477 5.52583 3.30832 5.59551 3.24512C5.6652 3.18191 5.74677 3.1332 5.83547 3.10184C5.92417 3.07048 6.01823 3.05708 6.11216 3.06243C6.20608 3.06778 6.29801 3.09177 6.38257 3.13301C6.46714 3.17425 6.54265 3.2319 6.6047 3.30261C6.66676 3.37333 6.71412 3.45663 6.74403 3.54583Z" fill="black"/>
+        </svg>
+        <span>Count <span class="count_update">0</span></span>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="mob_new_nav medium-hide large-up-hide">
+  <div class="toolkit">
+    <svg
+      fill="#000000"
+      height="18px"
+      width="18px"
+      version="1.1"
+      id="Layer_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 489.347 489.347"
+      xml:space="preserve"
+    >
+      <g>
+      	<path d="M412.642,345.939l-59.523-14.229l-66.352-66.352l51.12-51.055c11.874,4.167,24.216,6.203,36.499,6.202
+      		c28.736-0.002,57.122-11.149,78.233-32.221c32.686-32.626,41.544-82.646,22.043-124.466l-9.042-19.391l-53.807,53.682
+      		l-24.986-24.941l53.822-53.696L421.17,10.42C379.3-9.036,329.218-0.195,296.546,32.417
+      		c-30.131,30.078-40.012,74.943-26.092,114.534l-20.111,20.086L102.13,18.837C91.061,7.731,76.32,1.605,60.621,1.587
+      		c-0.023,0-0.044,0-0.067,0c-15.696,0-30.45,6.104-41.553,17.195C7.886,29.897,1.77,44.669,1.778,60.378
+      		c0.008,15.697,6.129,30.456,17.233,41.553L167.18,250.094l-20.155,20.129c-39.652-13.917-84.597-4.061-114.733,26.02
+      		C-0.393,328.869-9.252,378.888,10.25,420.708l9.042,19.391l53.806-53.681l24.986,24.94l-53.822,53.697l19.48,9.051
+      		c14.814,6.883,30.652,10.224,46.388,10.224c28.738-0.001,57.124-11.148,78.235-32.221c30.132-30.078,40.013-74.943,26.093-114.534
+      		l51.082-51.018l66.366,66.366l14.229,59.523l76.705,76.706l66.507-66.507L412.642,345.939z M301.691,144.194
+      		c-14.181-30.419-7.73-66.807,16.05-90.545c18.28-18.246,44.036-26.278,68.827-22.6l-42.211,42.113l67.451,67.328l42.24-42.142
+      		c3.697,24.738-4.343,50.456-22.622,68.702c-23.802,23.759-60.288,30.197-90.793,16.02l-9.505-4.417l-34.603,34.559l-24.968-24.965
+      		l34.573-34.529L301.691,144.194z M31.778,60.362c-0.004-7.69,2.992-14.923,8.43-20.362c5.433-5.426,12.657-8.414,20.347-8.414
+      		c7.711,0.009,14.918,3.002,20.345,8.446l194.398,194.38l-40.711,40.659L40.221,80.714C34.781,75.277,31.782,68.049,31.778,60.362z
+      		 M167.171,430.877c-18.28,18.246-44.038,26.278-68.827,22.6l42.211-42.112l-67.451-67.329l-42.24,42.142
+      		c-3.698-24.737,4.343-50.455,22.623-68.702c23.801-23.758,60.288-30.197,90.792-16.021l9.505,4.417l34.609-34.565l24.967,24.966
+      		l-34.578,34.534l4.44,9.525C197.403,370.751,190.952,407.138,167.171,430.877z M373.342,397.227l-7.564-31.645l31.646,7.564
+      		l49.498,49.499l-24.081,24.081L373.342,397.227z"></path>
+      </g>
+    </svg>
+  </div>
+  <div class="tool_content" style="display: none;">
+    <div class="div_custom_front_back">
+      <div class="front cmn active" id="design"><span>Front</span></div>
+      <div class="cmn back">
+        Custom Back <br>
+        <span>(Optional)</span>
+      </div>
+    </div>
+  </div>
+  <span class="tatto_speci">
+    <svg
+      data-v-14d3e5f1=""
+      width="100%"
+      height="100%"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="1.1"
+      x="0px"
+      y="0px"
+      viewBox="0 0 96 96"
+      enable-background="new 0 0 96 96"
+      xml:space="preserve"
+      style="min-width: 24px; max-width: 32px;"
+    >
+      <path data-v-14d3e5f1="" d="M34.3,48c0,3.2-2.6,5.8-5.8,5.8s-5.8-2.6-5.8-5.8s2.6-5.8,5.8-5.8S34.3,44.8,34.3,48z"></path> <path data-v-14d3e5f1="" d="M53.8,48c0,3.2-2.6,5.8-5.8,5.8s-5.8-2.6-5.8-5.8s2.6-5.8,5.8-5.8S53.8,44.8,53.8,48z"></path> <circle data-v-14d3e5f1="" cx="67.5" cy="48" r="5.8"></circle>
+    </svg>
+  </span>
+  <div class="tatoo_nav small-hide">
+    <ul style="display:none;">
+      {% comment %} <li class="file_file h4" id="file_data">
+        File
+
+        <svg
+          fill="#000000"
+          height="13px"
+          width="13px"
+          version="1.1"
+          id="Layer_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 330 330"
+          xml:space="preserve"
+        >
+          <path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393
+          	c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393
+          	s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"></path>
+        </svg>
+      </li> {% endcomment %}
+      <li class="file_tgy h4">Technology Selection: Classic</li>
+      <li class="file_size h4 size">Size: <span>1.5 x 1.5 inches</span></li>
+      <li class="file_w_option h4">White Option: <span>No White</span></li>
+      <li class="file_qty h4">Quantity: <span>200</span> Tattoos</li>
+    </ul>
+
+    <ul class="sub-menu-drop" id="file_data" style="display:none;">
+      <li class="new" id="clearButton">New Tattoo</li>
+
+      <li class="sign-login"></li>
+
+      <li class="sign-login   "></li>
+    </ul>
+  </div>
+  <span class="span preview small-hide" id="conver_preview2">
+    <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path id="Vector" d="M8.75 3.57955C8.1171 3.57955 7.51012 3.83097 7.06259 4.27849C6.61506 4.72603 6.36364 5.33301 6.36364 5.96591C6.36364 6.59881 6.61506 7.20579 7.06259 7.65332C7.51012 8.10085 8.1171 8.35227 8.75 8.35227C9.3829 8.35227 9.98988 8.10085 10.4374 7.65332C10.8849 7.20579 11.1364 6.59881 11.1364 5.96591C11.1364 5.33301 10.8849 4.72603 10.4374 4.27849C9.98988 3.83097 9.3829 3.57955 8.75 3.57955ZM8.75 9.94318C7.69516 9.94318 6.68353 9.52415 5.93764 8.77827C5.19176 8.03238 4.77273 7.02075 4.77273 5.96591C4.77273 4.91107 5.19176 3.89944 5.93764 3.15355C6.68353 2.40767 7.69516 1.98864 8.75 1.98864C9.80484 1.98864 10.8165 2.40767 11.5624 3.15355C12.3082 3.89944 12.7273 4.91107 12.7273 5.96591C12.7273 7.02075 12.3082 8.03238 11.5624 8.77827C10.8165 9.52415 9.80484 9.94318 8.75 9.94318ZM8.75 0C4.77273 0 1.37614 2.47386 0 5.96591C1.37614 9.45795 4.77273 11.9318 8.75 11.9318C12.7273 11.9318 16.1239 9.45795 17.5 5.96591C16.1239 2.47386 12.7273 0 8.75 0Z" fill="white"></path>
+    </svg></span
+  ><span class="span add_to_cart small-hide">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path id="Vector" d="M0 0.75C0 0.551088 0.0790175 0.360322 0.21967 0.21967C0.360322 0.0790175 0.551088 0 0.75 0H1.308C2.258 0 2.828 0.639 3.153 1.233C3.37 1.629 3.527 2.088 3.65 2.504C3.68327 2.50137 3.71663 2.50004 3.75 2.5H16.248C17.078 2.5 17.678 3.294 17.45 4.093L15.622 10.502C15.4581 11.0769 15.1114 11.5827 14.6343 11.9428C14.1572 12.303 13.5758 12.4979 12.978 12.498H7.03C6.42749 12.498 5.84165 12.3002 5.36252 11.9349C4.8834 11.5696 4.5375 11.057 4.378 10.476L3.618 7.704L2.358 3.456L2.357 3.448C2.201 2.881 2.055 2.35 1.837 1.954C1.628 1.569 1.46 1.5 1.309 1.5H0.75C0.551088 1.5 0.360322 1.42098 0.21967 1.28033C0.0790175 1.13968 0 0.948912 0 0.75ZM6.5 17.5C7.03043 17.5 7.53914 17.2893 7.91421 16.9142C8.28929 16.5391 8.5 16.0304 8.5 15.5C8.5 14.9696 8.28929 14.4609 7.91421 14.0858C7.53914 13.7107 7.03043 13.5 6.5 13.5C5.96957 13.5 5.46086 13.7107 5.08579 14.0858C4.71071 14.4609 4.5 14.9696 4.5 15.5C4.5 16.0304 4.71071 16.5391 5.08579 16.9142C5.46086 17.2893 5.96957 17.5 6.5 17.5ZM13.5 17.5C14.0304 17.5 14.5391 17.2893 14.9142 16.9142C15.2893 16.5391 15.5 16.0304 15.5 15.5C15.5 14.9696 15.2893 14.4609 14.9142 14.0858C14.5391 13.7107 14.0304 13.5 13.5 13.5C12.9696 13.5 12.4609 13.7107 12.0858 14.0858C11.7107 14.4609 11.5 14.9696 11.5 15.5C11.5 16.0304 11.7107 16.5391 12.0858 16.9142C12.4609 17.2893 12.9696 17.5 13.5 17.5Z" fill="white"></path>
+    </svg>
+    {{ section.settings.cart_btn }}
+  </span>
+</div>
+{% schema %}
+{
+  "name": "Tattoo header",
+  "settings": [
+     {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Image"
+      },
+      {
+        "type": "header",
+        "content": "Naviagtion Items"
+      },
+      {
+        "type": "text",
+        "id": "frst_opt",
+        "label": "First Navigation"
+      },
+      {
+        "type": "text",
+        "id": "scnd_opt",
+        "label": "Second Navigation"
+      },
+      {
+        "type": "text",
+        "id": "thrd_opt",
+        "label": "Third Navigation"
+      },
+      {
+        "type": "text",
+        "id": "frth_opt",
+        "label": "Forth Navigation"
+      },
+      {
+        "type": "text",
+        "id": "ffth_opt",
+        "label": "Fifth Navigation"
+      },
+      {
+        "type": "header",
+        "content": "Sub Naviagtion Items"
+      },
+      {
+        "type": "text",
+        "id": "frst_sub_opt",
+        "label": "First Sub Navigation"
+      },
+      {
+        "type": "text",
+        "id": "scnd_sub_opt",
+        "label": "Second sub Navigation"
+      },
+      {
+        "type": "text",
+        "id": "thrd_sub_opt",
+        "label": "Third Sub Navigation"
+      },
+      {
+        "type": "header",
+        "content": "Right Side Button"
+      },
+      {
+        "type": "text",
+        "id": "preview_btn",
+        "label": "Button Label"
+      },
+      {
+        "type": "text",
+        "id": "cart_btn",
+        "label": "Button Label"
+      },
+    {
+     "type": "checkbox",
+      "id": "hide_preview",
+      "label": "Preview-Show",
+      "default": true
+    }
+
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

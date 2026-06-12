@@ -1,0 +1,939 @@
+
+
+@media screen and (min-width: 990px) {
+  .large-up-hide {
+    display: none !important;
+  }
+  
+}
+@media screen and (min-width: 750px) {
+  .slide_dwro .desk_hide {
+    display: none !important;
+  }
+  
+}
+  
+
+@media only screen and (max-width: 1720px) {
+  .slide_dwro {
+    width: 6.5%;
+  }
+  .left_dwroor.active {
+    width: 30%;
+  }
+  .body_iner_right.active {
+    width: 77%;
+  }
+
+  .tatoo_nav ul {
+    gap: 18px;
+    justify-content: center;
+  }
+  .header_tattoo .header_tattoo_inner {
+    grid-template-columns: 0.7fr 1fr 8fr 6fr;
+  }
+  div#tabs-content {
+    width: calc(100% + 0px);
+  }
+  .inner_Content_row textarea {
+    height: 120px;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .header_tattoo .header_tattoo_inner {
+    grid-template-columns: 1fr 2fr 1fr 7fr;
+  }
+  .header_tattoo .header_tattoo_inner {
+    grid-template-columns: 1fr 3fr 10fr;
+    grid-template-areas:
+      "hamb logo btns"
+      "full-row full-row full-row";
+  }
+  .tatoo_hamb {
+    grid-area: hamb;
+  }
+
+  .logo_tattoo {
+    grid-area: logo;
+  }
+
+  .header-right {
+    grid-area: btns;
+  }
+
+  .tatoo_nav {
+    grid-area: full-row;
+  }
+  .tatoo_nav ul {
+    margin-top: 24px;
+    margin-bottom: 14px;
+    gap: 45px;
+    justify-content: left;
+  }
+  div#shopify-section-quntity-popup .tattoo_popup_inner {
+    height: 51vh;
+  }
+  .tattoo_popup.popup_selection .inner_Content_row,
+  .tattoo_popup.popup_option .inner_Content_row {
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  div#shopify-section-tattoo_popup_selection
+    .tattoo_popup.popup_selection
+    .tattoo_popup_inner {
+    padding: 28px 100px;
+  }
+  .tattoo_popup_inner h5 {
+    font-size: 12px;
+  }
+  .tattoo_popup .tattoo_popup_inner,
+  .instructions_popup_inner {
+    padding: 28px 28px;
+  }
+  .inner_Content_row textarea {
+    height: 77px;
+  }
+  .sub-menu-drop.active {
+    top: 86px;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .div_custom_front_back .cmn {
+    padding: 10px 15px;
+  }
+  .header_tattoo .header_tattoo_inner {
+    grid-template-columns: 1fr 2fr 1fr 7fr;
+  }
+  .slide_dwro {
+    width: 12%;
+  }
+  .header_tattoo .header_tattoo_inner {
+    grid-template-columns: 1fr 3fr 10fr;
+    grid-template-areas:
+      "hamb logo btns"
+      "full-row full-row full-row";
+  }
+  .tatoo_hamb {
+    grid-area: hamb;
+  }
+
+  .logo_tattoo {
+    grid-area: logo;
+  }
+
+  .header-right {
+    grid-area: btns;
+  }
+
+  .tatoo_nav {
+    grid-area: full-row;
+  }
+  .tatoo_nav ul {
+    margin-top: 24px;
+    margin-bottom: 14px;
+    gap: 18px;
+    justify-content: left;
+  }
+  .main-secrion .canvas-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100%;
+  }
+  .main-secrion .canvas-container {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  .tattoo_popup .tattoo_popup_inner,
+  .instructions_popup_inner {
+    padding: 23px 50px;
+  }
+  .bottom_save_btns {
+    bottom: 12%;
+    left: 20px;
+  }
+
+  .body_iner_right.active {
+    width: 53%;
+  }
+  .dynamic_loads_fonts {
+    width: calc(100% + 0px);
+    padding-right: 0;
+  }
+  div#tabs-content {
+    width: calc(100% + 0px);
+  }
+  .tip_edit_bar {
+    height: auto;
+    justify-content: flex-start;
+    flex-flow: row wrap;
+    gap: 6px;
+  }
+
+  .last-cart_page_inner .cmn.right {
+    padding: 30px 30px;
+  }
+
+  /* preview */
+  .category {
+    display: flex;
+    height: auto;
+    width: 100%;
+    justify-content: flex-start;
+    overflow: auto;
+  }
+  .ad_to_cart_instructins_new {
+    top: 93%;
+    left: 50%;
+    bottom: unset;
+    max-width: 400px;
+    width: 100%;
+  }
+  .thumbnails_drower {
+    height: auto;
+    width: 100%;
+  }
+  .cstm_slides {
+    width: 100%;
+  }
+  .cstm_slides {
+    width: 100%;
+    height: auto;
+  }
+  .cstm_slides button.slick-next.pull-right.slick-arrow {
+    right: 0;
+  }
+  .cstm_slides button.slick-prev.pull-left.slick-arrow {
+    left: 0;
+  }
+
+  .ad_to_cart_instructins_new {
+    flex-direction: column;
+  }
+  span.instructins {
+    margin: 0;
+  }
+  .left_cont {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .tattoo_popup.popup_preview .inner_Content_row {
+    flex-direction: column-reverse;
+    gap: 0;
+    height: 100%;
+    justify-content: space-around;
+    flex-wrap: unset;
+  }
+  .thumb_iner .inner_div {
+    padding: 20px 8px;
+  }
+  .tattoo_popup.popup_preview .tattoo_popup_inner {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    padding: 0;
+  }
+  .save_pop {
+    width: 100%;
+  }
+  span.close_preview {
+    right: 24px;
+    top: 30px;
+  }
+  .cmn.back br {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 989px) {
+  .inner_Content_row textarea {
+    height: 103px;
+  }
+  .last-cart_page_flx_iner {
+    height: 88vh;
+    overflow: scroll;
+  }
+}
+
+@media only screen and (max-width: 749px) {
+  span.add-cart-save {
+    padding: 7px 15px;
+    font-size: 13px;
+  }
+  .side-loop {
+    color: #ffffff;
+  }
+  .design_content,
+  .instructions_content,
+  .design_content_dynamic,
+  .design_content_dynamic_butterfly,
+  .design_content_dynamic_cross,
+  .design_content_dynamic_dragon {
+    height: calc(100vh - 380px);
+    align-content: flex-start;
+  }
+  span.crose_design {
+    right: 15px;
+  }
+  .designs_tatoo_designs {
+    margin-top: 50px;
+  }
+  .designs_tatoo .loop-svg {
+    width: 28%;
+  }
+  .designs_tatoo_designs span {
+    padding: 7px;
+    font-size: 12px;
+  }
+
+  .slide_dwro {
+    width: 100%;
+    z-index: 3;
+    height: auto;
+    position: fixed;
+    bottom: 0;
+  }
+  div#shopify-section-tatoo_design_left_sidebar .sidebar_Content_row {
+    display: flex;
+    flex-direction: row;
+    text-align: start;
+    gap: 5px;
+    justify-content: flex-start;
+  }
+  .sidebar {
+    flex: 0 0 22%;
+    text-align: center;
+  }
+  div#shopify-section-tatoo_design_left_sidebar .sidebar_Content_row  .sidebar {
+    flex: 0 0 16%;
+   
+  }
+  .tatto_body {
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    position: relative;
+  }
+  .left_dwroor.active {
+    width: 100%;
+  }
+  .body_iner_right.active {
+    width: 100%;
+  }
+  .left_dwroor {
+    position: absolute;
+    top: 0;
+  }
+
+  .header_tattoo .header_tattoo_inner {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .header_tattoo {
+    padding: 10px 10px;
+  }
+  span.cart_count {
+    padding: 8px 8px;
+  }
+  .logo_tattoo {
+    text-align: center;
+  }
+  .logo_tattoo img {
+    max-width: 80px;
+    width: 100%;
+  }
+  .drawer {
+    z-index: 3;
+  }
+
+  .inner_Content {
+    overflow: visible;
+  }
+  .inner_Content .slick-list {
+    height: auto !important;
+  }
+  .instructions_popup_inner {
+    width: 90%;
+  }
+
+  div#shopify-section-tattoo_popup_selection
+    .tattoo_popup.popup_selection
+    .tattoo_popup_inner,
+  .tattoo_popup .tattoo_popup_inner,
+  .instructions_popup_inner,
+  div#shopify-section-quntity-popup .tattoo_popup_inner {
+    padding: 38px 10px;
+  }
+  div#shopify-section-quntity-popup
+    .tattoo_popup_inner
+    div#quantity
+    span.qty_nxt {
+    width: 50%;
+  }
+  button.slick-prev.pull-left.slick-arrow {
+    left: 0px;
+  }
+  div#tabs-content {
+    width: calc(100% + 0px);
+  }
+  .tip_edit_bar {
+    height: auto;
+    padding: 16px 16px;
+  }
+  .side-loop {
+    padding: 10px 5px;
+    gap: 4px;
+  }
+  .side-loop svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .div_custom_front_back .cmn {
+    padding: 10px 16px;
+  }
+  .dynamic_loads_fonts {
+    width: calc(100% + 0px);
+    padding-right: 0;
+  }
+  .bottom_save_btns {
+    position: unset;
+    width: fit-content;
+  }
+  .last-cart_page_inner {
+    flex-direction: column;
+  }
+  .last-cart_page_inner .cmn {
+    width: 100%;
+  }
+  .last-cart_page_inner .cmn.left img {
+    /* height: 240px; */
+    height: auto;
+  }
+  .mob_new_nav .tatoo_nav.small-hide,
+  .mob_new_nav span.span.add_to_cart.small-hide {
+    display: block !important;
+  }
+  .mob_new_nav .tatoo_nav.small-hide ul {
+    display: block;
+    background: #fff;
+    padding: 26px 30px;
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+    left: 0;
+    top: 54px;
+    text-align: left;
+    border: none;
+    margin: 0;
+    border-top: 1px solid #f3f4f4;
+    
+  }
+
+  .mob_new_nav .tatoo_nav.small-hide ul li {
+    margin-bottom: 14px;
+  }
+
+  .mob_new_nav.medium-hide.large-up-hide {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    align-items: center;
+    background: #fff;
+    text-align: right;
+    padding: 10px 10px;
+    position: relative;
+  }
+  .mob_new_nav span.span.preview.small-hide,
+  .mob_new_nav span.span.add_to_cart.small-hide {
+    padding: 6px 10px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    gap: 8px;
+    font-size: 13px;
+    height: 35px;
+  }
+  .tatoo_nav li {
+    font-size: 17px;
+  }
+  span.tatto_speci svg {
+    color:black;
+    display: block;
+  }
+  .tattoo_popup .tattoo_popup_inner,
+  .instructions_popup_inner {
+    width: 90%;
+  }
+  .tattoo_popup.popup_preview .tattoo_popup_inner {
+    width: 100%;
+  }
+  .left_dwroor.active,
+  .body_iner_right.active {
+    width: 69%;
+  }
+  .tattoo_popup.popup_preview {
+    background: rgb(255 255 255) 0%;
+  }
+
+  .body_iner_right {
+    height: calc(100vh - 207.5938px);
+  }
+  .div_custom_front_back .cmn {
+    font-size: 12px;
+  }
+  div#shopify-section-tatoo_design_left_sidebar {
+    height: 100%;
+  }
+  .my_editor {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+  }
+  .drop_down {
+    width: auto;
+    padding: 10px;
+  }
+  .edit_item button {
+    font-size: 13px;
+    padding: 5px;
+    text-align: left;
+  }
+  .cart-popup .cmn_right_iner {
+    grid-template-columns: 1fr;
+  }
+  .cmn_right_iner.payment_opt {
+    grid-template-columns: 1fr !important;
+  }
+  .cmn_right_iner.payment_opt .payment_icon img {
+    width: 100%;
+  }
+  .tattoo_popup_inner h2 {
+    font-size: 22px;
+  }
+  .tattoo_popup.popup_selection .tattoo_popup_inner .loop-data {
+    font-size: 13px;
+  }
+  .tattoo_popup_inner h2 {
+    font-size: 19px;
+  }
+  .tattoo_popup_inner h5 {
+    margin-bottom: 10px;
+  }
+
+  .header_tattoo_inner .tatoo_nav,
+  .header_tattoo_inner .preview,
+  .header_tattoo_inner .add_to_cart {
+    display: none !important;
+  }
+  span.edit_item.active .edits_pop .pop_iner {
+    background: #ffffff;
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  span.edit_item.active .edits_pop {
+    position: unset;
+  }
+  .uploades_imgs_data .updateImg, .uploades_imgs_data_back .updateImg{
+    width: 100px;
+    height: 100px;
+  }
+  .slide_dwro .desk_hide {
+    display: flex;
+    align-items: center;
+        width: 16%;
+    justify-content: center;
+}
+  span.bar_hide {
+    color: #fff;
+    font-size: 18px;
+}
+
+.open_drwar_bt {
+    padding: 10px;
+    display: inline-block;
+}
+    div#shopify-section-section-main .main-secrion .canvas-container canvas {
+          top: 0 !important;
+    }
+    span.edit_item{
+          width: 30px;
+    height: 30px;
+    }
+    span.edit_item.edit_bgremove.btn_bg_click {
+    padding: 5px;
+}
+}
+
+@media only screen and (max-width: 420px) {
+  .my_editor.for_img,
+  .tip_edit_bar.edit_bar_txt {
+    display: none;
+  }
+  span.edit_item.edit_color input {
+    width: 20px;
+    height: 25px;
+  }
+  span.edit_item {
+    width: 18px;
+    height: 20px;
+  }
+  .edit_item button svg,
+  span.edit_item svg {
+    height: 12px;
+    width: 12px;
+  }
+  .tip_edit_bar{
+    gap: 4px;
+    padding: 10px;
+  }
+  .main-secrion .canvas-container.for-margin {
+    top: 42% !important;
+  }
+  .main-secrion .canvas-container {
+    top: 42% !important;
+  }
+
+  .designs_tatoo .loop-svg {
+    width: 43%;
+  }
+  .designs_tatoo_designs span {
+    padding: 7px;
+    font-size: 10px;
+  }
+  .left_dwroor.active,
+  .body_iner_right.active {
+    width: 100%;
+  }
+  .tattoo_popup_inner h5 {
+    font-size: 12px;
+  }
+  .inner_Content_row textarea {
+    height: 50px;
+    margin: 0 1px;
+  }
+
+  div#tabs-content {
+    height: 262px;
+  }
+  span.close_preview {
+    top: 34px;
+  }
+  .center_close_btn {
+    display: none;
+  }
+  .main-secrion .canvas-container canvas {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  .last-cart_page_flx_iner {
+    height: 83vh;
+    overflow: scroll;
+  }
+  .div_custom_front_back .cmn {
+    font-size: 10px;
+  }
+  span.btn_bg_click{
+        font-size: 9px;
+            padding: 0px;
+  }
+  .side-loop{
+    font-size: 9px;
+  }
+}
+@media only screen and (max-width: 360px) {
+  span.span.add_to_cart.small-hide {
+    font-size: 0;
+    justify-content: center;
+    padding: 9px 10px;
+    padding-left: 18px;
+    gap: 0;
+  }
+}
+@media only screen and (min-width: 1301px) and (max-width: 1400px) {
+  span.edit_item {
+    width: 40px;
+    height: 40px;
+  }
+  .body_iner_right.active {
+    width: 100%;
+    position: relative;
+  }
+
+  .body_iner_right.active .canvas-container2.SPotrait,
+  .body_iner_right.active .canvas-container2.lPotrait {
+    left: 60%;
+  }
+  .canvas-container.SPotrait,
+  .body_iner_right.active .canvas-container2.SPotrait,
+  .canvas-container.lPotrait,
+  .body_iner_right.active .canvas-container2.lPotrait {
+    top: 44%;
+  }
+
+  .tip_edit_bar {
+    gap: 16px;
+  }
+  div#shopify-section-quntity-popup
+    .tattoo_popup_inner
+    div#quantity
+    span.qty_nxt {
+    bottom: -30px;
+  }
+}
+@media only screen and (min-width: 750px) and (max-width: 1400px) {
+  .canvasmainbody {
+    flex-direction: column;
+  }
+  .canvasmainbody .div_custom_front_back {
+    flex-direction: row;
+    gap: 12px;
+  }
+  .canvasmainbody {
+    overflow-y: scroll;
+  }
+  .main-secrion canvas#canvas {
+    position: relative !important;
+    margin-bottom: 80px;
+  }
+}
+@media only screen and (min-width: 750px) and (max-width: 1300px) {
+  .div_custom_front_back {
+    max-width: 100%;
+    display: flex;
+
+    gap: 12px;
+  }
+  .canvasmainbody {
+    flex-direction: column;
+  }
+  .canvasmainbody .div_custom_front_back {
+    flex-direction: row;
+  }
+  span.edit_item {
+    width: 40px;
+    height: 40px;
+  }
+  .body_iner_right.active {
+    width: 100%;
+    position: relative;
+  }
+  .body_iner_right.active .canvas-container2 {
+    width: 350px !important;
+    left: 73%;
+    height: 350px !important;
+  }
+
+  .tip_edit_bar {
+    gap: 16px;
+  }
+  div#shopify-section-quntity-popup
+    .tattoo_popup_inner
+    div#quantity
+    span.qty_nxt {
+    bottom: -30px;
+  }
+}
+@media only screen and (min-width: 1023px) and (max-width: 1200px) {
+  .tip_edit_bar {
+    gap: 5px;
+  }
+  span.edit_item {
+    width: 28px;
+    height: 39px;
+  }
+  .tip_edit_bar {
+    padding: 10px 10px;
+  }
+  .edit_item button {
+    padding: 7px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .canvas-container.SScape {
+    width: 330px !important;
+    height: 330px !important;
+  }
+  .canvas-container.SPotrait {
+    width: 250px !important;
+    height: 330px !important;
+  }
+  .canvas-container.lPotrait {
+    width: 250px !important;
+    height: 330px !important;
+  }
+  .canvas-container.lScape {
+    width: 330px !important;
+    height: 330px !important;
+  }
+  span.edit_item {
+    width: 28px;
+    height: 39px;
+  }
+  .large-up-hide {
+    display: none !important;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1279px) {
+  .canvas-container.SScape {
+    width: 330px !important;
+    height: 330px !important;
+  }
+  .canvas-container.SPotrait {
+    width: 240px !important;
+    height: 330px !important;
+  }
+  .canvas-container.lPotrait {
+    width: 330px !important;
+    height: 430px !important;
+  }
+  .canvas-container.lScape {
+    width: 430px !important;
+    height: 430px !important;
+  }
+}
+@media screen and (min-width: 1280px) and (max-width: 1365px) {
+  .canvas-container.SScape {
+    width: 380px !important;
+    height: 380px !important;
+  }
+  .canvas-container.SPotrait {
+    width: 280px !important;
+    height: 380px !important;
+  }
+  .canvas-container.lPotrait {
+    width: 380px !important;
+    height: 480px !important;
+  }
+  .canvas-container.lScape {
+    width: 480px !important;
+    height: 480px !important;
+  }
+
+  .canvas-container.SPotrait canvas {
+    top: 52% !important;
+    left: 24% !important;
+  }
+  .canvas-container.SScape canvas {
+    top: 52% !important;
+    left: 44% !important;
+  }
+  .body_iner_right.active .canvas-container.SScape canvas {
+    left: 43% !important;
+  }
+  .canvas-container.lPotrait canvas {
+    top: 52% !important;
+    left: 44% !important;
+  }
+  .canvas-container.lScape canvas {
+    top: 52% !important;
+    left: 49% !important;
+  }
+  .body_iner_right.active .canvas-container.lScape canvas {
+    left: 44% !important;
+  }
+  .body_iner_right.active .canvas-container.lPotrait canvas {
+    left: 43% !important;
+  }
+  .left_dwroor.active {
+    width: 24%;
+  }
+}
+@media screen and (min-width: 1366px) and (max-width: 1439px) {
+  .canvas-container.SScape {
+    width: 380px !important;
+    height: 380px !important;
+  }
+  .canvas-container.SPotrait {
+    width: 280px !important;
+    height: 380px !important;
+  }
+  .canvas-container.lPotrait {
+    width: 380px !important;
+    height: 480px !important;
+  }
+  .canvas-container.lScape {
+    width: 480px !important;
+    height: 480px !important;
+  }
+
+  .canvas-container.SPotrait canvas {
+    top: 52% !important;
+    left: 39% !important;
+  }
+  .canvas-container.SScape canvas {
+    top: 52% !important;
+    left: 54% !important;
+  }
+  .canvas-container.lPotrait canvas {
+    top: 52% !important;
+    left: 54% !important;
+  }
+  .canvas-container.lScape canvas {
+    top: 52% !important;
+    left: 51% !important;
+  }
+}
+
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+  .canvas-container.SScape {
+    width: 400px !important;
+    height: 400px !important;
+  }
+  .canvas-container.SPotrait {
+    width: 300px !important;
+    height: 400px !important;
+  }
+  .canvas-container.lPotrait {
+    width: 400px !important;
+    height: 500px !important;
+  }
+  .canvas-container.lScape {
+    width: 500px !important;
+    height: 500px !important;
+  }
+  .canvas-container.lPotrait canvas {
+    top: 50% !important;
+    left: 48% !important;
+  }
+  .canvas-container.lScape canvas {
+    top: 52% !important;
+    left: 48% !important;
+  }
+  .canvas-container.SPotrait canvas {
+    top: 52% !important;
+    left: 28% !important;
+  }
+  .body_iner_right.active .canvas-container.SPotrait canvas {
+    left: 46% !important;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .canvas-container.SScape {
+    width: 400px !important;
+    height: 400px !important;
+  }
+  .canvas-container.SPotrait {
+    width: 300px !important;
+    height: 400px !important;
+  }
+  .canvas-container.lPotrait {
+    width: 400px !important;
+    height: 500px !important;
+  }
+  .canvas-container.lScape {
+    width: 500px !important;
+    height: 500px !important;
+  }
+  .canvas-container.lPotrait canvas {
+    top: 62% !important;
+    left: 65% !important;
+  }
+  .canvas-container.lScape canvas {
+    top: 74% !important;
+    left: 74% !important;
+  }
+}

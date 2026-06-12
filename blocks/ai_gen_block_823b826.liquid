@@ -1,0 +1,521 @@
+{% doc %}
+  @prompt
+    i need a linktree type section where i can add text and links and i want it to look like linktree but also within the style of the theme, can you allow me to change the background color
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-linktree-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: {{ block.settings.container_padding }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-linktree-container-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: {{ block.settings.spacing }}px;
+  }
+
+  .ai-linktree-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: {{ block.settings.header_spacing }}px;
+  }
+
+  .ai-linktree-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 {{ block.settings.title_margin }}px 0;
+    font-weight: {{ block.settings.title_weight }};
+  }
+
+  .ai-linktree-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ai-linktree-links-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.link_spacing }}px;
+    width: 100%;
+    max-width: {{ block.settings.max_link_width }}px;
+  }
+
+  .ai-linktree-link-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: {{ block.settings.link_padding }}px {{ block.settings.link_padding | times: 1.5 }}px;
+    background-color: {{ block.settings.link_bg_color }};
+    color: {{ block.settings.link_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.link_border_radius }}px;
+    border: {{ block.settings.link_border_width }}px solid {{ block.settings.link_border_color }};
+    font-size: {{ block.settings.link_text_size }}px;
+    font-weight: {{ block.settings.link_text_weight }};
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+  }
+
+  .ai-linktree-link-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.link_hover_bg_color }};
+    color: {{ block.settings.link_hover_text_color }};
+    border-color: {{ block.settings.link_hover_border_color }};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-linktree-empty-state-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-linktree-{{ ai_gen_id }} {
+      width: 100%;
+    }
+
+    .ai-linktree-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.85 }}px;
+    }
+
+    .ai-linktree-description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size | times: 0.9 }}px;
+    }
+
+    .ai-linktree-link-{{ ai_gen_id }} {
+      font-size: {{ block.settings.link_text_size | times: 0.95 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-linktree-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-linktree-container-{{ ai_gen_id }}">
+    {% if block.settings.title != blank or block.settings.description != blank %}
+      <div class="ai-linktree-header-{{ ai_gen_id }}">
+        {% if block.settings.title != blank %}
+          <h2 class="ai-linktree-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+        {% endif %}
+        {% if block.settings.description != blank %}
+          <div class="ai-linktree-description-{{ ai_gen_id }}">{{ block.settings.description }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="ai-linktree-links-{{ ai_gen_id }}">
+      {% liquid
+        assign has_links = false
+        for i in (1..10)
+          assign link_text_key = 'link_' | append: i | append: '_text'
+          assign link_url_key = 'link_' | append: i | append: '_url'
+          assign link_text = block.settings[link_text_key]
+          assign link_url = block.settings[link_url_key]
+          
+          if link_text != blank and link_url != blank
+            assign has_links = true
+          endif
+        endfor
+      %}
+
+      {% if has_links %}
+        {% for i in (1..10) %}
+          {% liquid
+            assign link_text_key = 'link_' | append: i | append: '_text'
+            assign link_url_key = 'link_' | append: i | append: '_url'
+            assign link_text = block.settings[link_text_key]
+            assign link_url = block.settings[link_url_key]
+          %}
+
+          {% if link_text != blank and link_url != blank %}
+            <a href="{{ link_url }}" class="ai-linktree-link-{{ ai_gen_id }}">
+              {{ link_text }}
+            </a>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <div class="ai-linktree-empty-state-{{ ai_gen_id }}">
+          Add your links in the block settings to get started
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Link tree",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Connect with us"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Find us on your favorite platforms"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        }
+      ],
+      "default": "bold"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "header_spacing",
+      "label": "Space below header",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "title_margin",
+      "label": "Space below title",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Links"
+    },
+    {
+      "type": "text",
+      "id": "link_1_text",
+      "label": "Link 1 text"
+    },
+    {
+      "type": "url",
+      "id": "link_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_2_text",
+      "label": "Link 2 text"
+    },
+    {
+      "type": "url",
+      "id": "link_2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_3_text",
+      "label": "Link 3 text"
+    },
+    {
+      "type": "url",
+      "id": "link_3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_4_text",
+      "label": "Link 4 text"
+    },
+    {
+      "type": "url",
+      "id": "link_4_url",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_5_text",
+      "label": "Link 5 text"
+    },
+    {
+      "type": "url",
+      "id": "link_5_url",
+      "label": "Link 5 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_6_text",
+      "label": "Link 6 text"
+    },
+    {
+      "type": "url",
+      "id": "link_6_url",
+      "label": "Link 6 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_7_text",
+      "label": "Link 7 text"
+    },
+    {
+      "type": "url",
+      "id": "link_7_url",
+      "label": "Link 7 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_8_text",
+      "label": "Link 8 text"
+    },
+    {
+      "type": "url",
+      "id": "link_8_url",
+      "label": "Link 8 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_9_text",
+      "label": "Link 9 text"
+    },
+    {
+      "type": "url",
+      "id": "link_9_url",
+      "label": "Link 9 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_10_text",
+      "label": "Link 10 text"
+    },
+    {
+      "type": "url",
+      "id": "link_10_url",
+      "label": "Link 10 URL"
+    },
+    {
+      "type": "header",
+      "content": "Link style"
+    },
+    {
+      "type": "range",
+      "id": "link_text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "link_text_weight",
+      "label": "Text weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "range",
+      "id": "link_padding",
+      "label": "Padding",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "link_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "link_border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "max_link_width",
+      "label": "Maximum link width",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "header",
+      "content": "Link colors"
+    },
+    {
+      "type": "color",
+      "id": "link_bg_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "link_text_color",
+      "label": "Text",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "link_border_color",
+      "label": "Border",
+      "default": "#E0E0E0"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_bg_color",
+      "label": "Hover background",
+      "default": "#F5F5F5"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_text_color",
+      "label": "Hover text",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_border_color",
+      "label": "Hover border",
+      "default": "#121212"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "label": "Container padding",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "label": "Section spacing",
+      "min": 16,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "link_spacing",
+      "label": "Space between links",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Link tree"
+    }
+  ]
+}
+{% endschema %}
