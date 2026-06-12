@@ -34,7 +34,7 @@
             aria-current="page"
           {% endif %}
         >
-          {{ childlink.title | escape }}
+          {{ childlink.title }}
         </a>
       {%- else -%}
         <custom-accordion>
@@ -43,7 +43,7 @@
               id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
               class="header__menu-item link link--text list-menu__item focus-inset"
             >
-              <span>{{ childlink.title | escape }}</span>
+              <span>{{ childlink.title }}</span>
               {% render 'icon-caret' %}
             </summary>
             <div class="custom-accordion__panel">
@@ -61,7 +61,7 @@
                         aria-current="page"
                       {% endif %}
                     >
-                      {{ grandchildlink.title | escape }}
+                      {{ grandchildlink.title }}
                     </a>
                   </li>
                 {%- endfor -%}
@@ -74,7 +74,7 @@
                           aria-current="page"
                         {% endif %}
                     >
-                      <span>{{ 'sections.header.view_all' | t: page: childlink.title }}</span>
+                      <span>{{ 'sections.header.view_all' | t: page: childlink.title | strip_html }}</span>
                     </a>
                   </li>
                 {%- endif -%}

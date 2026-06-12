@@ -32,6 +32,7 @@
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: normal;
+    cursor: pointer;
   }
 
   #shopify-section-tattoo_popup_selection .tattoo-effect-production-button::before,
@@ -53,13 +54,16 @@
     <h5>{{ section.settings.sub_Heading }}</h5>
       {% endif %}
 
-    {% assign production_button_link = section.settings.button_link | default: '/pages/production-time' %}
     {% assign production_button_text = section.settings.button_text | default: 'View Production Times' %}
-    {% if production_button_link != blank %}
-    <a href="{{ production_button_link }}" target="blank" class="button tattoo-effect-production-button">
-{{ production_button_text }}
-  </a>
-  {% endif %}
+    <button
+      type="button"
+      class="button tattoo-effect-production-button"
+      id="open-production-time-popup"
+      aria-haspopup="dialog"
+      aria-controls="production-time-modal"
+    >
+      {{ production_button_text }}
+    </button>
 
     {% assign custom_product1 = all_products[section.settings.product1] %}
     {% assign custom_product2 = all_products[section.settings.product2] %}
@@ -182,17 +186,12 @@
         "id": "sub_Heading",
         "label": "Sub Heading"
       },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button Link"
-        },
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Text",
-          "default": "Button Text"
-        },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button text",
+        "default": "View Production Times"
+      },
      {
       "type": "product",
       "id": "product1",

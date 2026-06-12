@@ -2359,6 +2359,162 @@ $(document).on("click", ".instructions_popup_inner span.close", function () {
   $("div#instructions").removeClass("active");
 });
 
+function closeProductionTimePopup() {
+  $("#production-time-modal").fadeOut();
+}
+
+function getProductionTimePageUrl() {
+  var config = window.productionTimeModalConfig || {};
+  var $content = $("#production-time-modal-content");
+  var pageUrl = config.pageUrl || $content.data("pageUrl") || "/pages/production-time";
+  if (typeof Shopify !== "undefined" && Shopify.routes && Shopify.routes.root) {
+    var root = Shopify.routes.root;
+    if (root !== "/" && pageUrl.indexOf(root) !== 0) {
+      pageUrl = root.replace(/\/$/, "") + pageUrl;
+    }
+  }
+  return pageUrl;
+}
+
+function extractProductionTimeSectionFromPage(html) {
+  var parser = new DOMParser();
+  var doc = parser.parseFromString(html, "text/html");
+  var selectors = [
+    ".shopify-section.section-main-page",
+    ".shopify-section.shopify-section--main-page",
+    "section.shopify-section[id*='__main']",
+  ];
+
+  for (var i = 0; i < selectors.length; i++) {
+    var section = doc.querySelector(selectors[i]);
+    if (section) {
+      return section.outerHTML;
+    }
+  }
+
+  return "";
+}
+
+function wrapProductionTimeTables($container) {
+  $container.find(".rte table").each(function () {
+    var $table = $(this);
+    if (!$table.closest(".responsive-table").length) {
+      $table.wrap('<div class="responsive-table"></div>');
+    }
+  });
+}
+
+function setProductionTimeModalTitle($container) {
+  var $heading = $container.find(".b-main-title, .h1, h1").first();
+  if ($heading.length) {
+    var titleId = "production-time-modal-title";
+    if (!$heading.attr("id")) {
+      $heading.attr("id", titleId);
+    }
+    $("#production-time-modal").attr("aria-labelledby", $heading.attr("id"));
+  }
+}
+
+function fetchProductionTimeSectionHtml() {
+  var pageUrl = getProductionTimePageUrl();
+  var sectionKey = (window.productionTimeModalConfig && window.productionTimeModalConfig.sectionKey) || "main";
+  var cacheBuster = window.Shopify && Shopify.designMode ? "&_=" + Date.now() : "";
+
+  return fetch(pageUrl + "?sections=" + sectionKey + cacheBuster)
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("sections request failed");
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      if (data && data[sectionKey]) {
+        return data[sectionKey];
+      }
+      throw new Error("section html missing");
+    })
+    .catch(function () {
+      return fetch(pageUrl + "?section_id=" + sectionKey + cacheBuster).then(function (response) {
+        if (!response.ok) {
+          throw new Error("section_id request failed");
+        }
+        return response.text();
+      });
+    })
+    .catch(function () {
+      return fetch(pageUrl + cacheBuster).then(function (response) {
+        if (!response.ok) {
+          throw new Error("page request failed");
+        }
+        return response.text();
+      }).then(extractProductionTimeSectionFromPage);
+    });
+}
+
+function openProductionTimePopup() {
+  if (!$("#production-time-modal").parent().is("body")) {
+    $("#production-time-modal").appendTo("body");
+  }
+
+  var $modal = $("#production-time-modal");
+  var $content = $("#production-time-modal-content");
+
+  $modal.fadeIn();
+  $content.html('<p class="production-time-modal__loading" aria-live="polite">Loading production times…</p>');
+  $("#production-time-modal .production-time-modal__close").trigger("focus");
+
+  fetchProductionTimeSectionHtml()
+    .then(function (html) {
+      if (!html || !html.trim()) {
+        throw new Error("empty section html");
+      }
+      $content.html(html);
+      wrapProductionTimeTables($content);
+      setProductionTimeModalTitle($content);
+    })
+    .catch(function () {
+      $content.html(
+        '<p class="production-time-modal__loading">Unable to load production times. Please try again.</p>'
+      );
+    });
+}
+
+document.addEventListener(
+  "click",
+  function (event) {
+    if (!event.target.closest("#open-production-time-popup")) {
+      return;
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    openProductionTimePopup();
+  },
+  true
+);
+
+$(document).on("click", "#production-time-modal .production-time-modal__dialog", function (event) {
+  event.stopPropagation();
+});
+
+$(document).on("click", "#production-time-modal .production-time-modal__close", function (event) {
+  event.preventDefault();
+  event.stopPropagation();
+  closeProductionTimePopup();
+});
+
+$(document).on("click", "#production-time-modal", function (event) {
+  if ($(event.target).is("#production-time-modal")) {
+    closeProductionTimePopup();
+  }
+});
+
+$(document).on("keydown", function (event) {
+  if (event.key === "Escape" && $("#production-time-modal").is(":visible")) {
+    closeProductionTimePopup();
+  }
+});
+
 $(".without_login").click(function () {
   $(".instructions_popup_inner .close").click();
 });
@@ -3191,10 +3347,24 @@ $("span.close_preview").click(function () {
 });
 
 $(".tattoo_popup_inner, .login-form-tattoo_container").click(function (e) {
+  if (
+    $(e.target).closest(
+      "#open-production-time-popup, #production-time-modal, .production-time-modal__dialog"
+    ).length
+  ) {
+    return;
+  }
   e.stopPropagation();
 });
 
-$(".tattoo_popup:not(.cstm_qty_pop)").click(function () {
+$(".tattoo_popup:not(.cstm_qty_pop)").click(function (e) {
+  if (
+    $(e.target).closest(
+      "#open-production-time-popup, #production-time-modal, .production-time-modal__dialog"
+    ).length
+  ) {
+    return;
+  }
   $(this).parent("div").fadeOut();
 });
 

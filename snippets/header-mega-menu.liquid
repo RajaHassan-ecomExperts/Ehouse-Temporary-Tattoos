@@ -19,7 +19,7 @@
   assign text_size = 't' | append: incremented_number
 
   assign total_cols = 6
-  assign link_title = link.title | downcase | strip
+  assign link_title = link.title | strip_html | downcase | strip
   assign left_total = 0
   assign right_total = 0
   assign above_total = 0
@@ -101,7 +101,7 @@
                         aria-current="page"
                       {% endif %}
                   >
-                    {{- childlink.title | escape -}}
+                    {{- childlink.title -}}
                   </a>
                   {%- if childlink.links != blank -%}
                     <ul class="list-unstyled" role="list">
@@ -115,7 +115,7 @@
                                 aria-current="page"
                               {% endif %}
                           >
-                            {{- grandchildlink.title | escape -}}
+                            {{- grandchildlink.title -}}
                           </a>
                         </li>
                       {%- endfor -%}

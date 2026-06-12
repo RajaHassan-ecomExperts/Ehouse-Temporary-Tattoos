@@ -38,6 +38,76 @@
     row-gap: 14px;
   }
 
+  @media only screen and (min-width: 990px) {
+    #shopify-section-add_cart_tattoo .last-cart_page_flx_iner {
+      max-height: calc(100vh - 32px);
+      padding: 20px;
+      box-sizing: border-box;
+      overflow: visible;
+    }
+
+    #shopify-section-add_cart_tattoo .last-cart_page_flx_iner > h2 {
+      margin: 0 0 12px;
+    }
+
+    #shopify-section-add_cart_tattoo .last-cart_page_inner {
+      align-items: stretch;
+      overflow: visible;
+    }
+
+    #shopify-section-add_cart_tattoo .last-cart_page_inner .cmn.right {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100vh - 120px);
+      min-height: 0;
+      box-sizing: border-box;
+    }
+
+    #shopify-section-add_cart_tattoo .cmn_right_iner {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      height: 100%;
+    }
+
+    #shopify-section-add_cart_tattoo .last-cart_page__scroll {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    #shopify-section-add_cart_tattoo .selected_sizes_data {
+      row-gap: 8px;
+    }
+
+    #shopify-section-add_cart_tattoo .selected_sizes_data .insert_data {
+      margin-bottom: 10px;
+      padding: 10px 15px;
+    }
+
+    #shopify-section-add_cart_tattoo .selected_sizes_data h3,
+    #shopify-section-add_cart_tattoo .selected_sizes_data h5 {
+      margin: 8px 0 4px;
+    }
+
+    #shopify-section-add_cart_tattoo .inner_Content_row textarea {
+      min-height: 64px;
+      max-height: 96px;
+      resize: vertical;
+    }
+
+    #shopify-section-add_cart_tattoo .last-cart_page__actions {
+      flex-shrink: 0;
+      padding-top: 12px;
+      margin-top: 8px;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      background: #fff;
+    }
+  }
+
   #shopify-section-add_cart_tattoo span.add_product_to_cart.button {
     min-height: 47px;
     border: 0;
@@ -57,6 +127,7 @@
   #shopify-section-add_cart_tattoo span.add_product_to_cart.button .text_carts {
     color: #fff;
   }
+
 </style>
 
 <div class="last-cart_page" style="display:none;">
@@ -66,13 +137,13 @@
         <path id="Vector" d="M1.64016 0.27L5.50016 4.13L9.34016 0.29C9.42498 0.199717 9.52716 0.127495 9.64058 0.0776622C9.75399 0.0278298 9.87629 0.00141434 10.0002 0C10.2654 0 10.5197 0.105357 10.7073 0.292893C10.8948 0.48043 11.0002 0.734784 11.0002 1C11.0025 1.1226 10.9797 1.24439 10.9333 1.35788C10.8869 1.47138 10.8178 1.57419 10.7302 1.66L6.84016 5.5L10.7302 9.39C10.895 9.55124 10.9916 9.76959 11.0002 10C11.0002 10.2652 10.8948 10.5196 10.7073 10.7071C10.5197 10.8946 10.2654 11 10.0002 11C9.87272 11.0053 9.74557 10.984 9.62678 10.9375C9.508 10.8911 9.40017 10.8204 9.31016 10.73L5.50016 6.87L1.65016 10.72C1.56567 10.8073 1.46473 10.8769 1.35316 10.925C1.2416 10.9731 1.12163 10.9986 1.00016 11C0.734946 11 0.480592 10.8946 0.293056 10.7071C0.10552 10.5196 0.000162707 10.2652 0.000162707 10C-0.00216879 9.8774 0.0205781 9.75561 0.0670076 9.64212C0.113437 9.52862 0.18257 9.42581 0.270163 9.34L4.16016 5.5L0.270163 1.61C0.105348 1.44876 0.00870232 1.23041 0.000162707 1C0.000162707 0.734784 0.10552 0.48043 0.293056 0.292893C0.480592 0.105357 0.734946 0 1.00016 0C1.24016 0.003 1.47016 0.1 1.64016 0.27Z" fill="black"></path>
       </svg>
     </span>
-      
+
 
   <div class="last-cart_page_flx_iner">
 <h2 class="h1">{{ section.settings.heading | default:"Review Order" }}</h2>
   <div class="last-cart_page_inner">
 
-    
+
 <div class="cmn left">
 </div>
 
@@ -80,6 +151,7 @@
 
 <div class="cmn right">
   <div class="cmn_right_iner">
+<div class="last-cart_page__scroll">
 <h2 class="h1 maintitle_prd">Butterfly Temporary Tattoo</h2>
 <span class='price h2'>$720.00</span>
 {% if section.settings.show_shopPay %}
@@ -104,14 +176,14 @@
 </p>
 {% endif %}
 <div class="selected_sizes_data">
-  
+
   <div class="sel_sizes_data">
      <label>Size:</label>
     <br>
     <div class="insert_data">
     6x6 inches
     </div>
-  
+
   </div>
 
    <div class="sel_qty_data">
@@ -136,6 +208,8 @@
       <textarea type="text" class="cartnote_field"></textarea>
     </div>
 </div>
+</div>
+<div class="last-cart_page__actions">
   <span class='add_product_to_cart button '>
    <span class="text_carts">
 <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -150,11 +224,12 @@
 
 {% endif %}
 
-  </span> 
+  </span>
 </div>
 </div>
 </div>
   </div>
+</div>
 </div>
 </div>
 
@@ -166,12 +241,12 @@
       "type": "image_picker",
       "id": "cstm_loder",
       "label": "Custom Loader"
-    }, 
+    },
         {
       "type": "text",
       "id": "heading",
       "label": "Heading"
-    }, 
+    },
       {
       "type": "checkbox",
       "id": "show_shopPay",
@@ -198,7 +273,7 @@
       "id": "atc_button",
       "label": "Cart Button Text"
     }
-      
+
     ]
   }
 {% endschema %}

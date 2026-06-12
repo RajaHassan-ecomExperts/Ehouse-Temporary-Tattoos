@@ -88,7 +88,8 @@
     font-size: 12px;
   }
   .tattoo_popup .tattoo_popup_inner,
-  .instructions_popup_inner {
+  .instructions_popup_inner,
+  .production-time-popup_inner {
     padding: 28px 28px;
   }
   .inner_Content_row textarea {
@@ -146,7 +147,8 @@
     padding: 0 20px;
   }
   .tattoo_popup .tattoo_popup_inner,
-  .instructions_popup_inner {
+  .instructions_popup_inner,
+  .production-time-popup_inner {
     padding: 23px 50px;
   }
   .bottom_save_btns {
@@ -338,10 +340,6 @@
   .logo_tattoo {
     text-align: center;
   }
-  .logo_tattoo img {
-    max-width: 80px;
-    width: 100%;
-  }
   .drawer {
     z-index: 3;
   }
@@ -361,6 +359,7 @@
     .tattoo_popup_inner,
   .tattoo_popup .tattoo_popup_inner,
   .instructions_popup_inner,
+  .production-time-popup_inner,
   div#shopify-section-quntity-popup .tattoo_popup_inner {
     padding: 38px 10px;
   }
@@ -463,7 +462,8 @@
     display: block;
   }
   .tattoo_popup .tattoo_popup_inner,
-  .instructions_popup_inner {
+  .instructions_popup_inner,
+  .production-time-popup_inner {
     width: 90%;
   }
   .tattoo_popup.popup_preview .tattoo_popup_inner {
@@ -629,7 +629,7 @@
     margin: 0 auto;
   }
   .last-cart_page_flx_iner {
-    height: 83vh;
+    height: 88vh;
     overflow: scroll;
   }
   .div_custom_front_back .cmn {

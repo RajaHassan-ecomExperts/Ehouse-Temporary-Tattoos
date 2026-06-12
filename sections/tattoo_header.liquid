@@ -1,4 +1,31 @@
+{%- liquid
+  assign logo_width = 100
+  assign mobile_logo_width = 100
+  if sections['header'].settings.logo_width != blank
+    assign logo_width = sections['header'].settings.logo_width
+  endif
+  if sections['header'].settings.mobile_logo_width != blank
+    assign mobile_logo_width = sections['header'].settings.mobile_logo_width
+  endif
+-%}
 <style>
+  #shopify-section-{{ section.id }} .logo_tattoo a {
+    display: inline-block;
+    line-height: 0;
+  }
+
+  #shopify-section-{{ section.id }} .logo_tattoo img {
+    height: auto;
+    max-width: 100%;
+    width: {{ logo_width }}px;
+  }
+
+  @media screen and (max-width: 749.98px) {
+    #shopify-section-{{ section.id }} .logo_tattoo img {
+      width: {{ mobile_logo_width }}px;
+    }
+  }
+
   .tatoo_hamb .hamburger {
       height: 4.4rem;
       width: 4.4rem;
@@ -51,14 +78,23 @@
       </div>
     </div>
     <div class="logo_tattoo">
-      <a href="{{ shop.url }}"
-        ><img
-          src="{{ section.settings.logo | img_url:'master' }}"
-          height=""
-          width=""
-          loading="lazy"
-          alt="{{ section.settings.logo.alt }}"
-      ></a>
+      <a href="{{ shop.url }}" class="logo_tattoo__link">
+        {%- if section.settings.logo != blank -%}
+          {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
+          {%- assign logo_height = logo_width | divided_by: section.settings.logo.aspect_ratio -%}
+          {% capture sizes %}(max-width: {{ logo_width | times: 2 }}px) 50vw, {{ logo_width }}px{% endcapture %}
+          {% capture widths %}{{ logo_width }}, {{ logo_width | times: 1.5 | round }}, {{ logo_width | times: 2 }}{% endcapture %}
+          {{ section.settings.logo | image_url: width: 600 | image_tag:
+            class: 'logo_tattoo__image',
+            widths: widths,
+            height: logo_height,
+            width: logo_width,
+            alt: logo_alt,
+            sizes: sizes,
+            loading: 'lazy'
+          }}
+        {%- endif -%}
+      </a>
     </div>
     <div class="tatoo_nav small-hide">
       <ul style="display:none;">

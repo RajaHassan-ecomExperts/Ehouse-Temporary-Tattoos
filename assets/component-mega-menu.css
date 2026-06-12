@@ -109,6 +109,18 @@
   color: rgb(var(--color-foreground));
 }
 
+.mega-menu__link:has(strong) {
+  font-size: 1em;
+  font-weight: 600;
+  color: rgb(var(--color-foreground));
+}
+
+.mega-menu__link:has(strong) strong {
+  font-weight: inherit;
+  color: inherit;
+  font-size: inherit;
+}
+
 .mega-menu__link:not(.mega-menu__link--level-2) {
   font-size: 0.9em;
 }
@@ -136,3 +148,4 @@
 .mega-menu__list--condensed .mega-menu__link {
   font-weight: normal;
 }
+

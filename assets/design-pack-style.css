@@ -1629,10 +1629,14 @@ div#shopify-section-tattoo_popup,
 div#shopify-section-quntity-popup,
 div#shopify-section-tattoo_popup_option,
 div#shopify-section-instruction-popup,
+div#shopify-section-production-time-popup,
 div#shopify-section-tattoo_popup_back {
   display: none;
   z-index: 1050;
   position: relative;
+}
+div#shopify-section-production-time-popup {
+  z-index: 1060;
 }
 div#shopify-section-tattoo_popup_back {
   z-index: 99;

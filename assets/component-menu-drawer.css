@@ -219,6 +219,17 @@ header-drawer .custom-accordion__panel .menu-drawer__menu-item {
   font-weight: normal;
 }
 
+header-drawer .custom-accordion__panel .menu-drawer__menu-item:has(strong) {
+  font-size: var(--header-drawer-font-size, 1.8rem);
+  font-weight: 500;
+  padding: 0.7em 3rem;
+}
+
+header-drawer .custom-accordion__panel .menu-drawer__menu-item:has(strong) strong {
+  font-weight: inherit;
+  color: rgb(var(--color-foreground));
+}
+
 header-drawer custom-accordion:has([open]) .custom-accordion__panel {
   background: transparent;
 }
