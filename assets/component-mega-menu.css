@@ -109,20 +109,20 @@
   color: rgb(var(--color-foreground));
 }
 
-.mega-menu__link:has(strong) {
+.mega-menu__link:not(.mega-menu__link--level-2) {
+  font-size: 0.9em;
+}
+
+.mega-menu__link:not(.mega-menu__link--level-2):has(strong) {
   font-size: 1em;
   font-weight: 600;
   color: rgb(var(--color-foreground));
 }
 
-.mega-menu__link:has(strong) strong {
+.mega-menu__link:not(.mega-menu__link--level-2):has(strong) strong {
   font-weight: inherit;
   color: inherit;
   font-size: inherit;
-}
-
-.mega-menu__link:not(.mega-menu__link--level-2) {
-  font-size: 0.9em;
 }
 
 .header--top-center .mega-menu__list {

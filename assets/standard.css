@@ -864,6 +864,18 @@ details[open] > .header__menu-item .icon-caret {
   padding: 0.8rem 2rem;
 }
 
+.header__submenu .header__submenu .header__menu-item:has(strong) {
+  font-size: calc(1em / 0.95);
+  font-weight: 600;
+  color: rgb(var(--color-foreground));
+}
+
+.header__submenu .header__submenu .header__menu-item:has(strong) strong {
+  font-weight: inherit;
+  color: inherit;
+  font-size: inherit;
+}
+
 .list-menu--disclosure .list-menu__item .icon-caret {
   position: absolute;
   inset-inline-end: 2rem;

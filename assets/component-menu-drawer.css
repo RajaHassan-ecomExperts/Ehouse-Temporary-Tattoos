@@ -227,7 +227,8 @@ header-drawer .custom-accordion__panel .menu-drawer__menu-item:has(strong) {
 
 header-drawer .custom-accordion__panel .menu-drawer__menu-item:has(strong) strong {
   font-weight: inherit;
-  color: rgb(var(--color-foreground));
+  color: inherit;
+  font-size: inherit;
 }
 
 header-drawer custom-accordion:has([open]) .custom-accordion__panel {
