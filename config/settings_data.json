@@ -173,7 +173,7 @@
       "tattoo_header": {
         "type": "tattoo_header",
         "settings": {
-          "logo": "shopify://shop_images/image_42_a33c0f9a-8faf-481f-9732-7c2e549e79d6.png",
+          "logo": "shopify://shop_images/temptat_white_ab3beb34-8bc5-47d7-89db-034963310f83_340x-1_1_1.webp",
           "frst_opt": "",
           "scnd_opt": "Size: <span>6x6 inches</span>",
           "thrd_opt": "Quantity: <span>1</span> Tattoos",
@@ -701,6 +701,7 @@
         "settings": {
           "Heading": "Choose Your Tattoo Effect",
           "sub_Heading": "",
+          "button_link": "shopify://pages/production-time",
           "button_text": "View Production Times",
           "product1": "copy-of-classic-custom-tattoo",
           "product1_txt": "No Minimum",
@@ -872,7 +873,7 @@
           "accent_gradient": "linear-gradient(310deg, rgba(17, 189, 251, 1) 15%, rgba(33, 249, 150, 1) 85%)",
           "heading": "#ffffff",
           "heading_background_gradient": "",
-          "button_label": "#ffffff",
+          "button_label": "#FFFFFF",
           "button": "#010101",
           "button_background_gradient": "",
           "secondary_button_label": "#ffffff"
