@@ -67,6 +67,23 @@
           class="product-variant-id"
         >
 
+        {%- comment -%}
+          Tattoo line item properties: when the product has the `tattoo.line_item_props` metafield,
+          pass each property as a line item property. The quantity is passed as a "Quantity" line item
+          property using the metafield value (not the quantity selector).
+        {%- endcomment -%}
+        {%- assign tattoo_line_item_props = product.metafields.tattoo.line_item_props.value -%}
+        {%- if product.tags contains 'Custom Product Tattoo App' and tattoo_line_item_props.properties != blank -%}
+          {%- if tattoo_line_item_props.quantity != blank -%}
+            <input type="hidden" name="properties[Quantity]" value="{{ tattoo_line_item_props.quantity | escape }}">
+          {%- endif -%}
+          {%- for tattoo_property in tattoo_line_item_props.properties -%}
+            {%- if tattoo_property.value != blank -%}
+              <input type="hidden" name="properties[{{ tattoo_property.name | escape }}]" value="{{ tattoo_property.value | escape }}">
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+        
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}

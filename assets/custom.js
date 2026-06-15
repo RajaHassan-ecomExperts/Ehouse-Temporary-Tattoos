@@ -3387,7 +3387,7 @@ $(document).on("click", "span.add_product_to_cart", function () {
   console.log('formdata', $formdata);
   
   $.ajax({
-    url: "/apps/tattoo/api_fnnew.php",
+    url: "/apps/tattoo/api_fnnew_metafield.php",
     type: "POST",
     data: $formdata,
     processData: false,
